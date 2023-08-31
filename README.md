@@ -27,13 +27,12 @@ Things you may want to cover:
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| facility_number | integer    | null: false                    |
 | facility_name   | string     | null: false                    |
 | postal_number   | string     | null: false                    |
 | address         | string     | null: false                    |
 | phone_number    | integer    | null: false                    |
 | fax_number      | integer    | null: false                    |
-| mail_address    | string     | null: false                    |
+| mail_address    | string     |                                |
 
 ### Association
 - has_many :notices

@@ -25,18 +25,27 @@ Things you may want to cover:
 
 ## usersテーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| facility_name   | string     | null: false                    |
-| postal_number   | string     | null: false                    |
-| address         | string     | null: false                    |
-| phone_number    | integer    | null: false                    |
-| fax_number      | integer    | null: false                    |
-| mail_address    | string     |                                |
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| name                | string     | null: false                    |
+| name_reading        | string     | null: false                    |
+| postal_number       | string     | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| city                | string     | null: false                    |
+| house_number        | string     | null: false                    |
+| building_name       | string     |                                |
+| phone_number        | integer    | null: false                    |
+| fax_number          | integer    | null: true                     |
+| sex_id              | integer    | null: true                     |
+| relationship_id     | integer    | null: true                     |
+| primary_care        | string     | null: true                     |
+| emergency_contact   | string     | null: true                     |
+| role                | integer    | null: false, default: 0        |
 
 ### Association
 - has_many :notices
 - has_many :photos
+- has_many :events
 
 
 ## noticesテーブル
@@ -45,7 +54,7 @@ Things you may want to cover:
 | ---------------- | ---------- | ------------------------------ |
 | title            | string     | null: false                    |
 | notice_text      | text       | null: false                    |
-| user             | references | null: false, foreign_key: true |
+| facility         | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -56,7 +65,21 @@ Things you may want to cover:
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
 | photo_text       | text       | null: false                    |
-| user             | references | null: false, foreign_key: true |
+| facility         | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+
+
+## eventsテーブル
+
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| event_year       | integer    | null: false                    |
+| event_month      | integer    | null: false                    |
+| event_day        | integer    | null: false                    |
+| event_name       | string     | null: false                    |
+| facility         | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user

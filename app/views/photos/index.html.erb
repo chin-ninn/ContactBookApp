@@ -1,0 +1,18 @@
+<%= render "shared/header" %>
+<%= render "shared/second-header" %>
+
+<%# @photos.user.name %>写真館
+
+<% @photos.each do |photo| %>
+  <div class="photo">
+    <div class="photo-image">
+      <%# image_tag photo.image %>
+    </div>
+    <div class="photo-text">
+      <%= photo.photo_text %>
+    </div>
+    <div class="photo-date">
+      投稿日：<%= photo.created_at %>
+    </div>
+  </div>
+<% end %>

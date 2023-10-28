@@ -52,9 +52,9 @@ Things you may want to cover:
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| title            | string     | null: false                    |
+| notice_title     | string     | null: false                    |
 | notice_text      | text       | null: false                    |
-| facility         | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -65,7 +65,7 @@ Things you may want to cover:
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
 | photo_text       | text       | null: false                    |
-| facility         | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -79,7 +79,7 @@ Things you may want to cover:
 | event_month      | integer    | null: false                    |
 | event_day        | integer    | null: false                    |
 | event_name       | string     | null: false                    |
-| facility         | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user

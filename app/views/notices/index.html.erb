@@ -1,0 +1,23 @@
+<%= render "shared/header" %>
+
+<% @notices.each do |notice| %>
+  <div class="notice">
+    <div class="notice-title">
+      <%= link_to notice.notice_title, notice_path(notice.id) %>
+    </div>
+    <div class="notice-date">
+      投稿日時：<%= notice.created_at %>
+    </div>
+  </div>
+<% end %>
+<div class="">
+  <%= link_to '写真館', photos_path %>
+</div>
+<%# if current_user.id == @notices.user_id && current_user.role == 1 %>
+<div class="">
+  <%= link_to '重要なお知らせ投稿', new_notice_path %>
+</div>
+<div class="">
+  <%= link_to '写真投稿', new_photo_path %>
+</div>
+<%# end %>

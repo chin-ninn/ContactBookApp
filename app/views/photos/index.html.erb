@@ -1,7 +1,7 @@
 <%= render "shared/header" %>
 <%= render "shared/second-header" %>
 
-<%# @photos.user.name %>写真館
+<%# @photos.user.name %> 写真館
 
 <% @photos.each do |photo| %>
   <div class="photo">
@@ -14,5 +14,13 @@
     <div class="photo-date">
       投稿日：<%= photo.created_at %>
     </div>
+    <%# if current_user.id == @notices.user_id && current_user.role == 1 %>
+      <div class="btn">
+        <%= link_to '編集', edit_photo_path(photo.id), method: :get %>
+      </div>
+      <div class="btn">
+        <%= link_to '削除', photo_path(photo.id), method: :delete %>
+      </div>
+    <%# end %>
   </div>
 <% end %>

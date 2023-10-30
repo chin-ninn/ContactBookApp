@@ -71,14 +71,12 @@ Things you may want to cover:
 - belongs_to :user
 
 
-## eventsテーブル
+## calendarsテーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| event_year       | integer    | null: false                    |
-| event_month      | integer    | null: false                    |
-| event_day        | integer    | null: false                    |
-| event_name       | string     | null: false                    |
+| event            | string     | null: false                    |
+| start_time       | datetime   | null: false                    |
 | user             | references | null: false, foreign_key: true |
 
 ### Association

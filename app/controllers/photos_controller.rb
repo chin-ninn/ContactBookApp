@@ -1,4 +1,7 @@
 class PhotosController < ApplicationController
+  #before_action :authenticate_user!
+  before_action :set_photo, only: [:edit, :update, :destroy]
+  #before_action :move_to_index, except: :index
 
   def index
     @photos = Photo.all.order(created_at: "DESC")
@@ -23,16 +26,13 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    @photo = Photo.find(params[:id])
     #if current_user.if != @photo.user_id
       #redirect_to action: :index
     #end
   end
 
   def update
-    @photo = Photo.find(params[:id])
     @photo.update(photo_params)
-    
     if @photo.save
       redirect_to action: :index
     else
@@ -41,7 +41,6 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    @photo = Photo.find(params[:id])
     #if current_user.id == @photo.user_id
     @photo.destroy
     #end
@@ -53,5 +52,15 @@ class PhotosController < ApplicationController
   def photo_params
     params.require(:photo).permit(:photo_text)#.merge(user_id: current_user.id)
     #active strage実装後:imageをPermitに追加する
+  end
+
+  def set_photo
+    @photo = Photo.find(params[:id])
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 end

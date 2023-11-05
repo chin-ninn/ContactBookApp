@@ -1,0 +1,43 @@
+<%= render "shared/header" %>
+<%= render "shared/second-header" %>
+
+<div class="title">
+  <h1>行事予定</h1>
+</div>
+<%# if current_user.id == @calendar.user_id && current_user.role == 1 %>
+  <h3>行事予定　投稿</h3>
+  <div>
+    <%= form_with model: @calendar, local: true do |form| %>
+      <div>
+        <%= form.label :start_time, "日時" %>
+        <%= form.datetime_select :start_time %>
+      </div>
+      <div class="text_field">
+        <%= form.label :event, "行事名" %>
+        <%= form.text_field :event, placeholder: "", maxlength: "15" %>
+      </div>
+      <div class="submit">
+        <%= form.submit "行事を入力する" %>
+      </div>
+    <% end %>
+  </div>
+<%# end %>
+
+<%= month_calendar events: @calendars do |date, calendars| %>
+  <%= date.day %>
+  <div>
+    <% calendars.each do |calendar| %>
+      <%= calendar.event %>
+        <div>
+          <%# if current_user.id == @calendar.user_id && current_user.role == 1 %>
+            <div class="btn">
+              <%= link_to '編集', edit_calendar_path(calendar.id), method: :get %>
+            </div>
+            <div class="btn">
+              <%= link_to '削除', calendar_path(calendar.id), method: :delete %>
+            </div>
+          <%# end %>
+        </div>
+    <% end %>
+  </div>
+<% end %>

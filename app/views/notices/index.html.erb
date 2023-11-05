@@ -10,14 +10,19 @@
     </div>
   </div>
 <% end %>
-<div class="">
-  <%= link_to '写真館', photos_path %>
+<div>
+  <div class="">
+    <%= link_to '写真館', photos_path %>
+  </div>
+  <div class="">
+    <%= link_to '行事予定', calendars_path %>
+  </div>
+  <%# if current_user.id == @notices.user_id && current_user.role == 1 %>
+  <div class="">
+    <%= link_to '重要なお知らせ投稿', new_notice_path %>
+  </div>
+  <div class="">
+    <%= link_to '写真投稿', new_photo_path %>
+  </div>
+  <%# end %>
 </div>
-<%# if current_user.id == @notices.user_id && current_user.role == 1 %>
-<div class="">
-  <%= link_to '重要なお知らせ投稿', new_notice_path %>
-</div>
-<div class="">
-  <%= link_to '写真投稿', new_photo_path %>
-</div>
-<%# end %>

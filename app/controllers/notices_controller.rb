@@ -1,4 +1,8 @@
 class NoticesController < ApplicationController
+  #before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_notice, only: [:show, :edit, :update, :destroy]
+  #before_action :move_to_index, except: :index
+
   def index
     @notices = Notice.all.order(created_at: "DESC")
   end
@@ -9,7 +13,6 @@ class NoticesController < ApplicationController
 
   def create
     @notice = Notice.new(notice_params)
-    
     if @notice.save
       redirect_to action: :index
     else
@@ -18,20 +21,16 @@ class NoticesController < ApplicationController
   end
 
   def show
-    @notice = Notice.find(params[:id])
   end
 
   def edit
-    @notice = Notice.find(params[:id])
     #if current_user.if != @notice.user_id
       #redirect_to action: :index
     #end
   end
 
   def update
-    @notice = Notice.find(params[:id])
     @notice.update(notice_params)
-    
     if @notice.save
       redirect_to action: :show
     else
@@ -40,7 +39,6 @@ class NoticesController < ApplicationController
   end
 
   def destroy
-    @notice = Notice.find(params[:id])
     #if current_user.id == @notice.user_id
     @notice.destroy
     #end
@@ -51,5 +49,15 @@ class NoticesController < ApplicationController
 
   def notice_params
     params.require(:notice).permit(:notice_title, :notice_text)#.merge(user_id: current_user.id)
+  end
+
+  def set_notice
+    @notice = Notice.find(params[:id])
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 end

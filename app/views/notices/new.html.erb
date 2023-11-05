@@ -1,6 +1,8 @@
 <%= render "shared/header" %>
 <%= render "shared/second-header" %>
 
+<h3>重要なお知らせ　投稿</h3>
+<p>お知らせ内容を入力してください</p>
 <%= form_with model: @notice, local: true do |form| %>
   <div class="title">
     <%= form.label :notice_title, "タイトル" %>

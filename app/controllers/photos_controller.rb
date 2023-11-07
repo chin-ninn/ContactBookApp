@@ -50,8 +50,7 @@ class PhotosController < ApplicationController
   private
 
   def photo_params
-    params.require(:photo).permit(:photo_text)#.merge(user_id: current_user.id)
-    #active strage実装後:imageをPermitに追加する
+    params.require(:photo).permit(:image, :photo_text)#.merge(user_id: current_user.id)
   end
 
   def set_photo

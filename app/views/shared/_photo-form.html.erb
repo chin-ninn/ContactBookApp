@@ -1,0 +1,16 @@
+<%# CSS・・・assets/stylesheets/shared/photo_form.css %>
+
+<%= form_with model: @photo, id: 'photo_form', local: true do |f| %>
+  <div class="file_field">
+    <%= f.file_field :image, multiple: true, class: 'photo_file', name: 'photo[images][]', data: {index: 0} %>
+  </div>
+  <div class="previews">
+    <div id="previews"></div>
+  </div>
+  <div class="text_area">
+    <%= f.text_area :photo_text, class: 'form_text', rows: '7', placeholder: 'コメントを入力してください。' %>
+  </div>
+  <div class="submit">
+    <%= f.submit '写真を投稿する', class: 'submit' %>
+  </div>
+<% end %>

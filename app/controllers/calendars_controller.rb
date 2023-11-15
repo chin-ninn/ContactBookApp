@@ -1,7 +1,7 @@
 class CalendarsController < ApplicationController
-    #before_action :authenticate_user!
-    before_action :set_photo, only: [:edit, :update, :destroy]
-    #before_action :move_to_index, except: :index
+  before_action :authenticate_user!, except: :index
+  before_action :set_photo, only: [:edit, :update, :destroy]
+  before_action :move_to_index, except: :index
 
   def index
     @calendars = Calendar.all
@@ -21,9 +21,9 @@ class CalendarsController < ApplicationController
   end
 
   def edit
-    #if current_user.if != @calendar.user_id
-      #redirect_to action: :index
-    #end
+    if current_user.if != @calendar.user_id
+      redirect_to action: :index
+    end
   end
 
   def update
@@ -36,16 +36,16 @@ class CalendarsController < ApplicationController
   end
 
   def destroy
-    #if current_user.id == @calendar.user_id
-    @calendar.destroy
-    #end
+    if current_user.id == @calendar.user_id
+      @calendar.destroy
+    end
     redirect_to action: :index
   end
 
   private
 
   def calendar_params
-    params.require(:calendar).permit(:start_time, :event)#.merge(user_id: current_user.id)
+    params.require(:calendar).permit(:start_time, :event).merge(user_id: current_user.id)
   end
 
   def set_calendar

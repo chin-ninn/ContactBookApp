@@ -34,15 +34,17 @@ ActiveRecord::Schema.define(version: 2023_11_07_004442) do
   end
 
   create_table "calendars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "event"
-    t.datetime "start_time"
+    t.string "event", null: false
+    t.datetime "start_time", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_calendars_on_user_id"
   end
 
   create_table "notices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "notice_title"
-    t.text "notice_text"
+    t.string "notice_title", null: false
+    t.text "notice_text", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -50,7 +52,7 @@ ActiveRecord::Schema.define(version: 2023_11_07_004442) do
   end
 
   create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "photo_text"
+    t.text "photo_text", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -63,6 +65,15 @@ ActiveRecord::Schema.define(version: 2023_11_07_004442) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "family_name", null: false
+    t.string "first_name", null: false
+    t.string "family_name_reading", null: false
+    t.string "first_name_reading", null: false
+    t.integer "relationship_id"
+    t.integer "phone_number", null: false
+    t.string "primary_care"
+    t.string "emergency_contact"
+    t.integer "role", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -70,6 +81,7 @@ ActiveRecord::Schema.define(version: 2023_11_07_004442) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "calendars", "users"
   add_foreign_key "notices", "users"
   add_foreign_key "photos", "users"
 end

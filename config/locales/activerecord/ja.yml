@@ -1,0 +1,7 @@
+ja:
+  enums:
+    user:
+      role:
+        service_user: '利用者'
+        users_family: '家族'
+        admin: '管理者'

@@ -1,20 +1,21 @@
 <%= render "shared/header" %>
-<%= render "shared/second-header" %>
 
 <%# @photos.user.name %> 写真館
 
 <% @photos.each do |photo| %>
-  <div class="photo">
-    <div class="photo-image">
-      <%# image_tag photo.image %>
+  <div class="photo-box">
+    <div class="images-box">
+      <% photo.images.each do |image| %>
+          <%= image_tag image, class: "images" if photo.images.attached? %>
+      <% end %>
     </div>
-    <div class="photo-text">
+    <div class="photos-text">
       <%= photo.photo_text %>
     </div>
-    <div class="photo-date">
+    <div class="photos-date">
       投稿日：<%= photo.created_at %>
     </div>
-    <%# if current_user.id == @notices.user_id && current_user.role == 1 %>
+    <%# if current_user.id == @photos.user_id && current_user.role == 1 %>
       <div class="btn">
         <%= link_to '編集', edit_photo_path(photo.id), method: :get %>
       </div>

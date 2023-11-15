@@ -1,0 +1,14 @@
+/* index画面の横スクロール */
+
+.images-box {
+  height: 200px;
+  width: auto;
+  display: flex;
+  overflow-x: scroll;
+}
+
+.images {
+  height: auto;
+  width: auto;
+  margin: 10px;
+}

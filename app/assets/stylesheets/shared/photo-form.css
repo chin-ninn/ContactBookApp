@@ -1,0 +1,16 @@
+/* formのプレビュー */
+
+#previews {
+  display: flex; /* 画像を横並びにする場合 */
+  flex-wrap: wrap; /* 画像が横幅を超えた場合に折り返す */
+}
+
+.preview {
+  margin-right: 10px; /* 画像の間隔を調整 */
+  margin-bottom: 10px; /* 画像の下の余白を調整 */
+}
+
+.preview-image {
+  height: 100px;
+  width: auto;
+}

@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_photo, only: [:edit, :update, :destroy]
-  #before_action :move_to_index, except: :index
+  before_action :move_to_index
 
   def index
     @photos = Photo.all.order(created_at: "DESC")
@@ -26,9 +26,9 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    #if current_user.if != @photo.user_id
-      #redirect_to action: :index
-    #end
+    if current_user.if != @photo.user_id
+      redirect_to action: :index
+    end
   end
 
   def update
@@ -41,16 +41,16 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    #if current_user.id == @photo.user_id
-    @photo.destroy
-    #end
+    if current_user.id == @photo.user_id
+      @photo.destroy
+    end
     redirect_to action: :index
   end
 
   private
 
   def photo_params
-    params.require(:photo).permit(:image, :photo_text)#.merge(user_id: current_user.id)
+    params.require(:photo).permit(:photo_text, {images: []}).merge(user_id: current_user.id)
   end
 
   def set_photo
@@ -59,7 +59,7 @@ class PhotosController < ApplicationController
 
   def move_to_index
     unless user_signed_in?
-      redirect_to action: :index
+      redirect_to 'notices/index'
     end
   end
 end

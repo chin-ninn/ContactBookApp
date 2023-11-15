@@ -1,20 +1,7 @@
 <%= render "shared/header" %>
-<%= render "shared/second-header" %>
 
 <h3>写真館　投稿</h3>
 <p>写真と説明文を入力してください</p>
-<%= form_with model: @photo, local: true do |form| %>
-  <div class="image">
-    <div>
-      クリックして写真を選ぶ
-    </div>
-      <%# form.file_field :image %>
-  </div>
-  <div class="text">
-    <%= form.label :photo_text, "説明文" %>
-    <%= form.text_area :photo_text, placeholder: "例）今日は天気が良かったので屋外歩行に行きました。「外の空気が気持ちいい！」と利用者様も気分転換になったようです。", rows: "7" %>
-  </div>
-  <div class="submit">
-    <%= form.submit "写真を投稿する" %>
-  </div>
-<% end %>
+<div>
+  <%= render 'shared/photo-form' %>
+</div>

@@ -1,28 +1,38 @@
 <%= render "shared/header" %>
+<%= render "shared/second-header" %>
 
-<% @notices.each do |notice| %>
-  <div class="notice">
-    <div class="notice-title">
-      <%= link_to notice.notice_title, notice_path(notice.id) %>
+<div class='page-header'>
+  <h1 class='pege-header-text'>
+    施設名
+  </h1>
+</div>
+
+<div class='notices'>
+  <% @notices.each do |notice| %>
+    <div class="notice">
+      <div class="notice-title">
+        <%= link_to notice.notice_title, notice_path(notice.id) %>
+      </div>
+      <div class="notice-date">
+        投稿日時：<%= notice.created_at %>
+      </div>
     </div>
-    <div class="notice-date">
-      投稿日時：<%= notice.created_at %>
-    </div>
-  </div>
-<% end %>
-<div>
-  <div class="">
+  <% end %>
+</div>
+
+<div class='index-links'>
+  <div class="index-btn">
     <%= link_to '写真館', photos_path %>
   </div>
-  <div class="">
+  <div class="index-btn">
     <%= link_to '行事予定', calendars_path %>
   </div>
-  <%# if current_user.id == @notices.user_id && current_user.role == 1 %>
-  <div class="">
-    <%= link_to '重要なお知らせ投稿', new_notice_path %>
-  </div>
-  <div class="">
-    <%= link_to '写真投稿', new_photo_path %>
-  </div>
-  <%# end %>
+  <% if user_signed_in? && current_user.id == @notices.user_id %>
+    <div class="index-btn">
+      <%= link_to '重要なお知らせ投稿', new_notice_path %>
+    </div>
+    <div class="index-btn">
+      <%= link_to '写真投稿', new_photo_path %>
+    </div>
+  <% end %>
 </div>

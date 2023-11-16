@@ -2,13 +2,14 @@
 
 <%= form_with model: @user, url: user_registration_path, class: 'registration-main', local: true do |f| %>
 <div class='form-wrap'>
+
   <div class='form-header'>
     <h1 class='form-header-text'>
-      情報入力
+      施設情報入力
     </h1>
   </div>
 
-  <%# render 'shared/error_messages', model: f.object %>
+  <% render 'shared/error_messages', model: f.object %>
 
   <div class="form-group">
     <div class='form-text-wrap'>
@@ -36,47 +37,63 @@
   </div>
 
   <div class="form-group">
-    <p class='form-info-header'>
-      施設情報入力
-    </p>
-  </div>
-
-  <div class="form-group">
     <div class='form-text-wrap'>
-      <label class="form-text"></label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.select :role, User.roles_i18n.invert, {}, class: 'input-select' %>
-  </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">お名前(全角)</label>
+      <label class="form-text">施設名(全角)</label>
       <span class="indispensable">必須</span>
     </div>
     <div class='input-name-wrap'>
-      <%= f.text_field :family_name, class:"input-name", id:"last-name", placeholder:"例) 佐藤" %>
-      <%= f.text_field :first_name, class:"input-name", id:"first-name", placeholder:"例) 太郎" %>
+      <%= f.text_field :name, class:"input-name", id:"last-name", placeholder:"例) デイケア桜" %>
     </div>
   </div>
 
   <div class="form-group">
     <div class='form-text-wrap'>
-      <label class="form-text">お名前カナ(全角)</label>
+      <label class="form-text">施設名カナ(全角)</label>
       <span class="indispensable">必須</span>
     </div>
     <div class='input-name-wrap'>
-      <%= f.text_field :family_name_reading, class:"input-name", id:"last-name-reading", placeholder:"例) サトウ" %>
-      <%= f.text_field :first_name_reading, class:"input-name", id:"first-name-reading", placeholder:"例) タロウ" %>
+      <%= f.text_field :name_reading, class:"input-name", id:"last-name-reading", placeholder:"例) デイケアサクラ" %>
     </div>
   </div>
 
   <div class="form-group">
     <div class='form-text-wrap'>
-      <label class="form-text">続柄</label>
-      <span class="indispensable">利用者様・家族様のみ</span>
+      <label class="form-text">郵便番号</label>
+      <span class="indispensable">必須</span>
     </div>
-    <%#= f.collection_select(:relationship_id, Relationship.all, :id, :name, {}, {class:"select-box", id:"relationship"}) %>
+    <%= f.text_field :postal_code, class:"input-default", id:"postal-code", placeholder:"例）123-4567", maxlength:"8" %>
+  </div>
+
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">都道府県</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+  </div>
+
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">市区町村</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.text_field :city, class:"input-default", id:"city", placeholder:"例）横浜市緑区"%>
+  </div>
+
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">番地</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.text_field :house_number, class:"input-default", id:"house_number", placeholder:"例）青山1-1-1"%>
+  </div>
+
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">建物名</label>
+      <span class="form-any">任意</span>
+    </div>
+    <%= f.text_field :building_name, class:"input-default", id:"building", placeholder:"例）柳ビル103"%>
   </div>
 
   <div class="form-group">
@@ -84,27 +101,20 @@
       <label class="form-text">電話番号</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.text_field :phone_number, class:"input-default", id:"phone-number", placeholder:"例）09012345678",maxlength:"11" %>
+    <%= f.text_field :phone_number, class:"input-default", id:"phone-number", placeholder:"例）0123456789",maxlength:"11" %>
   </div>
 
   <div class="form-group">
     <div class='form-text-wrap'>
-      <label class="form-text">かかりつけ医</label>
-      <span class="indispensable">利用者様・家族様のみ</span>
+      <label class="form-text">ファックス番号</label>
+      <span class="indispensable">任意</span>
     </div>
-    <%= f.text_area :primary_care, class:"input-default", id:"primary_care", placeholder:"例）〇〇医院" %>
-  </div>
-
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">緊急搬送先</label>
-      <span class="indispensable">利用者様・家族様のみ</span>
-    </div>
-    <%= f.text_area :emergency_contact, class:"input-default", id:"emergency_contact", placeholder:"例）△△総合病院" %>
+    <%= f.text_field :fax_number, class:"input-default", id:"fax-number", placeholder:"例）0123456789",maxlength:"11" %>
   </div>
 
   <div class='register-btn'>
     <%= f.submit "登録" ,class:"register-red-btn" %>
   </div>
+
 </div>
 <% end %>

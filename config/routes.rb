@@ -4,5 +4,4 @@ Rails.application.routes.draw do
   resources :notices, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   resources :photos, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   resources :calendars, only: [:index, :new, :create, :edit, :update, :destroy]
-  resources :authorities, only: :index
 end

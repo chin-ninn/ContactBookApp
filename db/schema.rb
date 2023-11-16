@@ -65,15 +65,15 @@ ActiveRecord::Schema.define(version: 2023_11_07_004442) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "family_name", null: false
-    t.string "first_name", null: false
-    t.string "family_name_reading", null: false
-    t.string "first_name_reading", null: false
-    t.integer "relationship_id"
+    t.string "name", null: false
+    t.string "name_reading", null: false
+    t.string "postal_number", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", null: false
+    t.string "house_number", null: false
+    t.string "building_name"
     t.integer "phone_number", null: false
-    t.string "primary_care"
-    t.string "emergency_contact"
-    t.integer "role", default: 0, null: false
+    t.integer "fax_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

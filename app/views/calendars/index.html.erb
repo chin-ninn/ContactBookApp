@@ -1,43 +1,61 @@
 <%= render "shared/header" %>
 <%= render "shared/second-header" %>
 
-<div class="title">
-  <h1>行事予定</h1>
+<div class='page-header'>
+  <h1 class='pege-header-text'>
+    行事予定
+  </h1>
 </div>
-<%# if current_user.id == @calendar.user_id && current_user.role == 1 %>
-  <h3>行事予定　投稿</h3>
-  <div>
-    <%= form_with model: @calendar, local: true do |form| %>
-      <div>
-        <%= form.label :start_time, "日時" %>
-        <%= form.datetime_select :start_time %>
+
+<% if user_signed_in? && current_user.id == @calendar.user_id %>
+  <%= form_with model: @calendar, local: true do |form| %>
+  <div class='form-wrap'>
+
+    <div class='form-header'>
+      <h1 class='form-header-text'>
+        行事予定入力
+      </h1>
+    </div>
+
+    <% render 'shared/error_messages', model: f.object %>
+
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">日時</label>
       </div>
-      <div class="text_field">
-        <%= form.label :event, "行事名" %>
-        <%= form.text_field :event, placeholder: "", maxlength: "15" %>
+      <%= form.datetime_select :start_time %>
+    </div>
+
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">行事名</label>
       </div>
-      <div class="submit">
-        <%= form.submit "行事を入力する" %>
-      </div>
-    <% end %>
+      <%= form.text_field :event, maxlength: "15" %>
+    </div>
+
+    <div class="submit-btn">
+      <%= form.submit "行事を入力する", class: "submit" %>
+    </div>
+
   </div>
-<%# end %>
+  <% end %>
+<% end %>
 
 <%= month_calendar events: @calendars do |date, calendars| %>
   <%= date.day %>
-  <div>
     <% calendars.each do |calendar| %>
+    <div class='calendar-box'>
       <%= calendar.event %>
-        <div>
-          <%# if current_user.id == @calendar.user_id && current_user.role == 1 %>
-            <div class="btn">
-              <%= link_to '編集', edit_calendar_path(calendar.id), method: :get %>
-            </div>
-            <div class="btn">
-              <%= link_to '削除', calendar_path(calendar.id), method: :delete %>
-            </div>
-          <%# end %>
+      <% if user_signed_in? && current_user.id == @calendar.user_id %>
+        <div class="edit-btn-wrap">
+          <div class="edit-btn">
+            <%= link_to '編集', edit_notice_path(@notice.id), method: :get %>
+          </div>
+          <div class="edit-btn">
+            <%= link_to '削除', notice_path(@notice.id), method: :delete %>
+          </div>
         </div>
+      <% end %>
+    </div>
     <% end %>
-  </div>
 <% end %>

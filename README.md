@@ -87,6 +87,7 @@ Things you may want to cover:
 | email               | string     | null: false, unique: true      |
 | encrypted_password  | string     | null: false                    |
 | name                | string     | null: false                    |
+| name_reading        | string     | null: false                    |
 | postal_code         | string     | null: false                    |
 | prefecture_id       | integer    | null: false                    |
 | city                | string     | null: false                    |

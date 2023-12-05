@@ -17,7 +17,7 @@
   <div class="notice-text">
     <%= @notice.notice_text %>
   </div>
-  <% if user_signed_in? && current_user.id == @notices.user_id %>
+  <% if admin_signed_in? && current_admin.id == @notices.admin_id %>
     <div class="edit-btn-wrap">
       <div class="edit-btn">
         <%= link_to '編集', edit_notice_path(@notice.id), method: :get %>

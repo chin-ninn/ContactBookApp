@@ -64,7 +64,7 @@ Things you may want to cover:
 | ------------------- | ---------- | ------------------------- |
 | email               | string     | null: false, unique: true |
 | encrypted_password  | string     | null: false               |
-| fac_name            | string     | null: false               |
+| facility_name       | string     | null: false               |
 | postal_code         | string     | null: false               |
 | prefecture_id       | integer    | null: false               |
 | city                | string     | null: false               |

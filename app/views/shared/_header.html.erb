@@ -7,6 +7,11 @@
         <%= link_to current_user.name, "#", class: "user-name" %>
         <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %>
       </div>
+    <% elsif admin_signed_in? %>
+      <div class='nav-list'>
+        <%= link_to current_admin.name, "#", class: "user-name" %>
+        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "logout" %>
+      </div>
     <% else %>
       <div class='nav-list'>
         <%= link_to 'ログイン', new_user_session_path, class: "login" %>

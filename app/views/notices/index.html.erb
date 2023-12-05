@@ -1,5 +1,4 @@
 <%= render "shared/header" %>
-<%= render "shared/second-header" %>
 
 <div class='page-header'>
   <h1 class='pege-header-text'>
@@ -7,27 +6,28 @@
   </h1>
 </div>
 
-<div class='notices'>
-  <% @notices.each do |notice| %>
-    <div class="notice">
-      <div class="notice-title">
-        <%= link_to notice.notice_title, notice_path(notice.id) %>
-      </div>
-      <div class="notice-date">
-        投稿日時：<%= notice.created_at %>
-      </div>
+<% @notices.each do |notice| %>
+  <div class='notices-wrap'>
+    <div class="notice-title">
+      <%= link_to notice.notice_title, notice_path(notice.id) %>
     </div>
-  <% end %>
-</div>
+    <div class="notice-date">
+      投稿日時：<%= notice.created_at %>
+    </div>
+  </div>
+<% end %>
 
-<div class='index-links'>
+<div class='index-wrap'>
   <div class="index-btn">
     <%= link_to '写真館', photos_path %>
   </div>
   <div class="index-btn">
     <%= link_to '行事予定', calendars_path %>
   </div>
-  <% if user_signed_in? && current_user.id == @notices.user_id %>
+  <div class="index-btn">
+    <%# link_to '施設情報', admin_path(@notices.admin.id) %>
+  </div>
+  <% if admin_signed_in? && current_admin.id == @notices.admin_id %>
     <div class="index-btn">
       <%= link_to '重要なお知らせ投稿', new_notice_path %>
     </div>
